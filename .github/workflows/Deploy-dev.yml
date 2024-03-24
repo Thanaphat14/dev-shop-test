@@ -33,14 +33,16 @@ jobs:
           push: true
           tags: thanaphat14/234-project-devops_shop:latest
 
-      - name: copy file via ssh password
+      - name: copy files via ssh password
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{secrets.HOST_SERVER}}
           username: ${{secrets.HOST_USER_NAME}}
           key: ${{secrets.HOST_SSH_PRIVATE_KEY}}
           port: 22
-          source: "docker-compose.yml"
+          source: |
+            docker-compose.yml
+            Dockerfile  
           target: "/home/ubuntu/se-project-234-2023-devops_shop"
 
       - name: docker compose
